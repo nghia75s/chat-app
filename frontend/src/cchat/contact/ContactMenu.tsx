@@ -1,13 +1,19 @@
 // Contact Menu
-import { Search, UserPlus, Users, UserCog, MailOpen } from "lucide-react"
+import { Search, UserPlus, Users, UserCog } from "lucide-react"
 
-export function ContactMenu() {
+export type ActiveMenu = "contacts" | "groups" | "invitations"
+
+interface ContactMenuProps {
+  activeMenu: ActiveMenu;
+  onSelectMenu: (menu: ActiveMenu) => void;
+}
+
+export function ContactMenu({ activeMenu, onSelectMenu }: ContactMenuProps) {
   const menuItems = [
-    { id: "friends", icon: UserPlus, label: "Danh sách bạn bè", isActive: true },
+    { id: "contacts", icon: UserPlus, label: "Danh bạ nhân viên" },
     { id: "groups", icon: Users, label: "Danh sách nhóm và cộng đồng" },
-    { id: "requests", icon: MailOpen, label: "Lời mời kết bạn" },
-    { id: "group-invites", icon: UserCog, label: "Lời mời vào nhóm" },
-  ]
+    { id: "invitations", icon: UserCog, label: "Lời mời vào nhóm và cộng đồng" },
+  ] as const;
 
   return (
     <div className="flex w-[340px] shrink-0 flex-col border-r border-zinc-200 bg-white h-full z-10">
@@ -28,20 +34,24 @@ export function ContactMenu() {
       </div>
 
       {/* Menu List */}
-      <div className="flex flex-col flex-1 overflow-y-auto min-h-0 py-2 custom-scrollbar">
-        {menuItems.map((item) => (
-          <button
-            key={item.id}
-            className={`flex items-center gap-3 px-4 py-3 mx-2 rounded-md transition-colors ${
-              item.isActive 
-                ? "bg-[#e5efff] text-[#005AE0] font-medium" 
-                : "text-zinc-800 hover:bg-zinc-100 font-normal"
-            }`}
-          >
-            <item.icon className="h-[22px] w-[22px]" strokeWidth={item.isActive ? 2 : 1.5} />
-            <span className="text-[15px]">{item.label}</span>
-          </button>
-        ))}
+      <div className="flex flex-col flex-1 overflow-y-auto min-h-0 py-2 custom-scrollbar gap-1">
+        {menuItems.map((item) => {
+          const isActive = item.id === activeMenu;
+          return (
+            <button
+              onClick={() => onSelectMenu(item.id)}
+              key={item.id}
+              className={`flex items-center gap-3 px-4 py-3 mx-2 rounded-md transition-colors ${
+                isActive 
+                  ? "bg-[#e5efff] text-[#005AE0] font-medium" 
+                  : "text-zinc-800 hover:bg-zinc-100 font-normal"
+              }`}
+            >
+              <item.icon className="h-[22px] w-[22px]" strokeWidth={isActive ? 2 : 1.5} />
+              <span className="text-[15px]">{item.label}</span>
+            </button>
+          )
+        })}
       </div>
     </div>
   )

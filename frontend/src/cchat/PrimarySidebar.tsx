@@ -9,7 +9,7 @@ interface PrimarySidebarProps {
 
 export function PrimarySidebar({ activeTab }: PrimarySidebarProps) {
   const navigate = useNavigate()
-  
+
   const topNav = [
     { id: "chat", icon: MessageCircle, label: "Tin nhắn" },
     { id: "contacts", icon: BookUser, label: "Danh bạ" },
@@ -24,7 +24,7 @@ export function PrimarySidebar({ activeTab }: PrimarySidebarProps) {
         {/* Avatar User */}
         <Avatar className="h-[48px] w-[48px] border border-white/20 shadow-md cursor-pointer hover:border-white/50 transition-colors">
           <AvatarImage src="/avatars/me.png" />
-          <AvatarFallback className="bg-blue-300 text-blue-900 font-bold">ME</AvatarFallback>
+          <AvatarFallback className="bg-blue-300 text-blue-900 font-bold">Dat</AvatarFallback>
         </Avatar>
 
         {/* Top Navigation */}
@@ -36,9 +36,8 @@ export function PrimarySidebar({ activeTab }: PrimarySidebarProps) {
                 key={item.id}
                 title={item.label}
                 onClick={() => chatActions.switchTab(navigate, item.id)}
-                className={`group relative flex w-full flex-col items-center justify-center py-4 transition-colors hover:bg-white/10 ${
-                  isActive ? "bg-white/15 text-white" : ""
-                }`}
+                className={`group relative flex w-full flex-col items-center justify-center py-4 transition-colors hover:bg-white/10 ${isActive ? "bg-white/15 text-white" : ""
+                  }`}
               >
                 {isActive && (
                   <div className="absolute left-0 top-0 bottom-0 w-[4px] bg-white rounded-r-md" />
@@ -61,7 +60,7 @@ export function PrimarySidebar({ activeTab }: PrimarySidebarProps) {
       </div>
 
       <div className="flex flex-col items-center gap-2 w-full">
-        <button 
+        <button
           title="Cài đặt"
           className="flex w-full items-center justify-center py-4 transition-colors hover:text-white hover:bg-white/10"
         >
