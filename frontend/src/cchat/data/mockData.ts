@@ -11,3 +11,6 @@ export const mockConversations = [
 ];
 
 export type ChatItem = typeof mockConversations[0];
+
+
+// data để test giao diện

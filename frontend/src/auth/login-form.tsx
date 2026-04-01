@@ -167,6 +167,17 @@ export function LoginForm({
                       {isLoading ? <Loader2 className="animate-spin" /> : "Đăng nhập"}
                     </Button>
                   </Field>
+
+                  <div className="text-center text-sm mt-4">
+                    Chưa có tài khoản?{" "}
+                    <button
+                      type="button"
+                      onClick={() => navigate("/signup")}
+                      className="font-medium text-primary hover:underline underline-offset-4 transition-all"
+                    >
+                      Đăng ký ngay
+                    </button>
+                  </div>
                 </FieldGroup>
               </form>
             )}
