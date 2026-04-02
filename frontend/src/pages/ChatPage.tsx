@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { PrimarySidebar } from "../cchat/PrimarySidebar"
+import { PrimarySidebar } from "../cchat/sidebar/PrimarySidebar"
 import { ChatListSidebar } from "../cchat/chat/ChatListSidebar"
 import { MainChatArea } from "../cchat/chat/MainChatArea"
 import { RightInfoPanel } from "../cchat/chat/RightInfoPanel"
@@ -8,7 +8,7 @@ import { mockConversations } from "../cchat/data/mockData"
 export default function ChatPage() {
   const [isRightPanelOpen, setIsRightPanelOpen] = useState(true)
   const [activeChatId, setActiveChatId] = useState<number>(1)
-  
+
   const activeChat = mockConversations.find(c => c.id === activeChatId) || mockConversations[0]
 
   return (
@@ -17,16 +17,16 @@ export default function ChatPage() {
       <PrimarySidebar activeTab="chat" />
 
       {/* Cột 2: Danh sách hội thoại */}
-      <ChatListSidebar 
+      <ChatListSidebar
         activeChatId={activeChatId}
         onSelectChat={setActiveChatId}
       />
 
       {/* Cột 3: Khu vực nhắn tin chính */}
-      <MainChatArea 
+      <MainChatArea
         chat={activeChat}
-        isRightPanelOpen={isRightPanelOpen} 
-        onToggleRightPanel={() => setIsRightPanelOpen(!isRightPanelOpen)} 
+        isRightPanelOpen={isRightPanelOpen}
+        onToggleRightPanel={() => setIsRightPanelOpen(!isRightPanelOpen)}
       />
 
       {/* Cột 4: Thông tin hội thoại */}
